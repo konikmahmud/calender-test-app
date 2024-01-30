@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOER 2024 Calendar</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>DOER 2024 Calendar</h1>
+
+  <% calendarData.forEach(month => { %>
+    <h2><%= month.month %></h2>
+    <table>
+      <tr>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+      </tr>
+      <tr>
+        <% month.days.forEach(day => { %>
+          <td>
+            <% if (day) { %>
+              <%= day.day %>
+            <% } %>
+          </td>
+          <% if (day && day.day && (new Date(2024, calendarData.indexOf(month), day.day)).getDay() === 6) { %>
+            </tr><tr>
+          <% } %>
+        <% }) %>
+      </tr>
+    </table>
+  <% }) %>
+</body>
+</html>
